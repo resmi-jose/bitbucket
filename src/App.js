@@ -7,8 +7,9 @@ import Person from "./Components/Person";
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      
       <BrowserRouter>
+      <Navbar />
         <Routes>
           <Route path="/" element={<Person />} />
           <Route path="/starwar/:name" element={<Person />} />

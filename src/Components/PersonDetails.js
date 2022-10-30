@@ -10,7 +10,7 @@ const PersonDetails = ({ persons }) => {
   }));
 
   return (
-    <div>
+ 
       <Box sx={{ width: "100%" }}>
         {persons.map((person, i) => (
           <>
@@ -31,7 +31,7 @@ const PersonDetails = ({ persons }) => {
           </>
         ))}
       </Box>
-    </div>
+ 
   );
 };
 

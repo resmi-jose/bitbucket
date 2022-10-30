@@ -28,7 +28,7 @@ const Person = () => {
   };
 
   return (
-    <>
+   
       <Container className="containerStyles">
         <Autocomplete
           id="people-demo"
@@ -47,7 +47,7 @@ const Person = () => {
 
         <PersonDetails persons={persons} />
       </Container>
-    </>
+    
   );
 };
 
