@@ -45,7 +45,7 @@ const Person = () => {
         noOptionsText={"No results"}
       />
 
-      <PersonDetails persons={persons} />
+      
     </Container>
   );
 };
