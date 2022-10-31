@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import PersonDetails from "./PersonDetails";
 
 const Person = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [query, setQuery] = useState(null);
   const [persons, setPersons] = useState([]);
@@ -22,32 +22,31 @@ const Person = () => {
     setQuery(value);
     let name = value.name;
     const res = await axios.get(`https://swapi.dev/api/people/?search=${name}`);
-
     setPersons(res.data.results);
-    history(`/starwar/:${name}`);
+    if (res.data.results) {
+      navigate(`/starwar/:${name}`, { state: { data: res.data.results } });
+    }
   };
 
   return (
-   
-      <Container className="containerStyles">
-        <Autocomplete
-          id="people-demo"
-          getOptionLabel={(data) => `${data.name}`}
-          options={!data ? [{ label: "Loading..." }] : data}
-          sx={{ width: 300 }}
-          value={query}
-          onChange={(event, newValue) => {
-            onChangeHandle(newValue);
-          }}
-          renderInput={(params) => (
-            <TextField {...params} label="Star Wars Persons" />
-          )}
-          noOptionsText={"No results"}
-        />
+    <Container className="containerStyles">
+      <Autocomplete
+        id="people-demo"
+        getOptionLabel={(data) => `${data.name}`}
+        options={!data ? [{ label: "Loading..." }] : data}
+        sx={{ width: 300 }}
+        value={query}
+        onChange={(event, newValue) => {
+          onChangeHandle(newValue);
+        }}
+        renderInput={(params) => (
+          <TextField {...params} label="Star Wars Persons" />
+        )}
+        noOptionsText={"No results"}
+      />
 
-        <PersonDetails persons={persons} />
-      </Container>
-    
+      <PersonDetails persons={persons} />
+    </Container>
   );
 };
 
